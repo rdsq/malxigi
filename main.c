@@ -18,7 +18,7 @@ bool processChars(char current, char next, CharStringMap charMap[MAP_SIZE]) {
                 if (v.value[0] == 'x' && next == 'X') {
                     putchar('X');
                 } else {
-                    printf(v.value);
+                    printf("%s", v.value);
                 }
                 return true;
             }
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
         printf("help msg wip\n");
         return 1;
     }
-    CharStringMap charMap[MAP_SIZE] = {
+    const CharStringMap charMap[MAP_SIZE] = {
         {'\\', "x"},
         {'c', "ĉ"},
         {'C', "Ĉ"},
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
     size_t length = strlen(argv[1]);
     for (size_t i = 0; i < length; i++) {
         char current = argv[1][i];
-        char next = ' '; // something, not really good code...
+        char next = '\0'; // any char value, doesn't matter
         if (i < length) {
             next = argv[1][i+1];
         }
