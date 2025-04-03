@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include "help.c"
 
 #define MAP_SIZE 13
 
@@ -9,7 +10,7 @@ typedef struct {
     char value[2];
 } CharStringMap;
 
-bool processChars(char current, char next, CharStringMap charMap[MAP_SIZE]) {
+bool processChars(char current, char next, const CharStringMap charMap[MAP_SIZE]) {
     if (next == 'x' || next == 'X') {
         for (int i = 0; i < MAP_SIZE; i++) {
             CharStringMap v = charMap[i];
@@ -30,8 +31,11 @@ bool processChars(char current, char next, CharStringMap charMap[MAP_SIZE]) {
 
 int main(int argc, char* argv[]) {
     if (argc != 2) { // including the file arg
-        printf("help msg wip\n");
+        helpMessage();
         return 1;
+    } else if (strcmp(argv[1], "--help") != 0 || strcmp(argv[1], "-h") != 0) {
+        helpMessage();
+        return 0;
     }
     const CharStringMap charMap[MAP_SIZE] = {
         {'\\', "x"},
